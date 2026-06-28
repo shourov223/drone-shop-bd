@@ -49,9 +49,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100">
+    <nav className="w-full border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
       {/* Container */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div className="container mx-auto sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <div className="flex-shrink-0">
           <span className="text-xl font-bold text-[#006633] cursor-pointer tracking-tight">

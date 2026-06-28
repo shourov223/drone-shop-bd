@@ -50,8 +50,8 @@ export default function Banner() {
   ];
 
   return (
-    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 transition-colors duration-300 overflow-hidden">
-      <div className="container">
+    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 transition-colors duration-300 overflow-hidden pt-[100px] h-[700px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 h-full">
         <Swiper
           modules={[Autoplay, Pagination, EffectFade]}
           effect={"fade"}
@@ -68,11 +68,16 @@ export default function Banner() {
             bulletClass:
               "swiper-pagination-bullet !bg-zinc-400 dark:!bg-zinc-600 transition-all duration-300 rounded-full !h-2 !w-2 inline-block mx-1 cursor-pointer",
           }}
-          className="rounded-3xl border border-zinc-200/60 dark:border-zinc-800/50 overflow-hidden shadow-sm"
+          className="rounded-3xl border border-zinc-200/60 dark:border-zinc-800/50 overflow-hidden shadow-sm h-full"
         >
           {bannerData.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <Image src={slide.image} alt="banner_image" className="w-full h-[700px] object-cover" />
+            <SwiperSlide key={slide.id} className="h-full">
+              <Image
+                src={slide.image}
+                alt="banner_image"
+                className="w-full h-full object-cover"
+                priority
+              />
             </SwiperSlide>
           ))}
         </Swiper>
