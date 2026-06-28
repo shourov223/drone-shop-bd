@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
   FiSearch,
@@ -53,11 +54,11 @@ export default function Navbar() {
       {/* Container */}
       <div className="container mx-auto sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <div className="flex-shrink-0">
+        <Link href={"/"} className="flex-shrink-0">
           <span className="text-xl font-bold text-[#006633] cursor-pointer tracking-tight">
             Drone Shop BD
           </span>
-        </div>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center space-x-8 font-medium text-[15px]">
