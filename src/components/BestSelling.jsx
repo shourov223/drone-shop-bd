@@ -65,7 +65,7 @@ const bestSellingProducts = [
 
 const BestSelling = () => {
   return (
-    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 py-12 md:py-16 transition-colors duration-300">
+    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 py-12 md:py-16 transition-colors duration-300 px-[10px]">
       <div className="container sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12 gap-4">
           <div className="text-center sm:text-left">
@@ -81,7 +81,7 @@ const BestSelling = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-8 justify-items-center">
           {bestSellingProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -183,7 +183,7 @@ const ProductCard = ({ product }) => {
             )}
           </div>
 
-          <button className="px-4 py-2.5 bg-[#006633] hover:bg-[#005229] dark:bg-[#006633] dark:hover:bg-[#007a3d] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-md shadow-green-900/5 active:scale-95 transition-all cursor-pointer">
+          <button className="px-3 py-2.5 bg-[#006633] hover:bg-[#005229] dark:bg-[#006633] dark:hover:bg-[#007a3d] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-md shadow-green-900/5 active:scale-95 transition-all cursor-pointer">
             <FiShoppingCart size={14} />
             Buy Now
           </button>

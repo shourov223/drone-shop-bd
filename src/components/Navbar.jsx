@@ -49,7 +49,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
+    <nav className="px-[10px] w-full border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
       {/* Container */}
       <div className="container mx-auto sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand Logo */}

@@ -18,7 +18,7 @@ const brandInfo = [
 
 const PopularBrands = () => {
   return (
-    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 py-12 md:py-16 transition-colors duration-300">
+    <section className="w-full bg-[#f8f9fa] dark:bg-zinc-950 py-12 md:py-16 transition-colors duration-300 px-[10px]">
       <div className="container sm:px-6 lg:px-8">
         <div className="mb-8 md:mb-10 text-center md:text-left">
           <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
