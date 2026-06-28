@@ -120,7 +120,7 @@ const ProductDetailsPage = () => {
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="w-full aspect-square relative bg-[#f7f7f7] dark:bg-zinc-900 rounded-3xl overflow-hidden flex items-center justify-center border border-zinc-100 dark:border-zinc-800">
               {discountPercentage > 0 && (
-                <span className="absolute top-4 left-4 bg-[#f8ecea] dark:bg-red-950/50 text-[#d9381e] dark:text-red-400 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-10">
+                <span className="absolute top-4 left-4 bg-[#f8ecea] dark:bg-red-950/50 text-[#d9381e] dark:text-red-400 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-5">
                   Save {discountPercentage}%
                 </span>
               )}
