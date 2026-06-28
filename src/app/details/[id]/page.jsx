@@ -102,7 +102,7 @@ const ProductDetailsPage = () => {
       : null;
 
   return (
-    <section className="bg-white dark:bg-zinc-950 min-h-screen pt-6 pb-20 font-sans text-zinc-800 dark:text-zinc-200 antialiased transition-colors duration-200 pt-[50px]">
+    <section className="bg-white dark:bg-zinc-950 min-h-screen pt-6 pb-20 font-sans text-zinc-800 dark:text-zinc-200 antialiased transition-colors duration-200 pt-[50px] px-[10px]">
       <div className="container mx-auto max-w-[1200px] px-4 md:px-6">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs md:text-sm text-zinc-400 dark:text-zinc-500 mb-6 font-medium capitalize">
