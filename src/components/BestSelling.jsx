@@ -87,13 +87,6 @@ const ProductCard = ({ product }) => {
         )}
 
         <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
-          <button
-            className="w-9 h-9 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#006633] hover:text-white dark:hover:bg-[#006633] transition-colors cursor-pointer"
-            title="Add to Wishlist"
-          >
-            <FiHeart size={16} />
-          </button>
-
           <Link href={`/details/${id}`}>
             <button
               className="w-9 h-9 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#006633] hover:text-white dark:hover:bg-[#006633] transition-colors cursor-pointer"

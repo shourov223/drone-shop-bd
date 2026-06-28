@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Provider from "@/provider/Provider";
+import { ReduxProvider } from "@/redux/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,13 +27,15 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <Provider>
-        <body className="min-h-full flex flex-col">
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
-      </Provider>
+      <ReduxProvider>
+        <Provider>
+          <body className="min-h-full flex flex-col">
+            <Navbar />
+            {children}
+            <Footer />
+          </body>
+        </Provider>
+      </ReduxProvider>
     </html>
   );
 }

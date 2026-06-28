@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { IoChevronDown, IoMenu, IoClose } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
 import useProduct from "@/hooks/useProducts";
+import Image from "next/image";
 
 const AllProduct = () => {
   const [products, setProducts] = useState([]);
@@ -333,26 +334,33 @@ const AllProduct = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredProducts.map((product) => (
                   <div
-                    key={product?.id || product?._id || Math.random()}
+                    key={product?.id || Math.random()}
                     className="bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 shadow-sm flex flex-col justify-between h-full"
                   >
                     <div>
                       {product?.thumbnail && (
-                        <div className="w-full h-48 relative overflow-hidden rounded-2xl bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center mb-4">
-                          <img
+                        <Link
+                          href={`/details/${product.id}`}
+                          className="w-full h-48 relative overflow-hidden rounded-2xl bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center mb-4"
+                        >
+                          <Image
+                            width={192}
+                            height={192}
                             src={product.thumbnail}
                             alt={product.title || "Product image"}
                             className="object-contain max-h-full max-w-full group-hover:scale-105 transition-transform duration-300"
                           />
-                        </div>
+                        </Link>
                       )}
                       <div className="mb-2">
                         <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                           {product?.brand || "Generic"}
                         </span>
-                        <h3 className="text-base font-semibold text-zinc-900 dark:text-white line-clamp-1 mt-0.5">
-                          {product?.title || "Untitled Product"}
-                        </h3>
+                        <Link href={`/details/${product.id}`}>
+                          <h3 className="text-base font-semibold text-zinc-900 dark:text-white line-clamp-1 mt-0.5">
+                            {product?.title}
+                          </h3>
+                        </Link>
                       </div>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-4">
                         {product?.description}

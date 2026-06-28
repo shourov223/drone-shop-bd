@@ -13,10 +13,22 @@ import {
   FiX,
 } from "react-icons/fi";
 
+// ✅ রেডাক্স থেকে ডাটা রিড করার জন্য useSelector ইমপোর্ট করা হলো
+import { useSelector } from "react-redux";
+
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
-  const [mounted, setMounted] = useState(false); // Next.js hydration error এড়ানোর জন্য
+  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // ✅ ১. রেডাক্স স্টোর থেকে কার্ট আইটেম রিড করা
+  const cartItems = useSelector((state) => state.cart.items || []);
+
+  // ✅ ২. কার্টের মোট প্রোডাক্ট কাউন্ট হিসাব করা (কোয়ান্টিটি সহ)
+  const totalCartCount = cartItems.reduce(
+    (acc, item) => acc + (item.quantity || 1),
+    0,
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -50,17 +62,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="px-[10px] w-full border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
-      {/* Container */}
+    <nav className="px-[10px] border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
       <div className="container mx-auto sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Brand Logo */}
-        <Link href={"/"} className="flex-shrink-0">
+        <Link href={"/"} className="shrink-0">
           <span className="text-xl font-bold text-[#006633] cursor-pointer tracking-tight">
             Drone Shop BD
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center space-x-8 font-medium text-[15px]">
           <a
             href="#"
@@ -110,22 +119,24 @@ export default function Navbar() {
             </button>
 
             <button className="hover:text-[#006633] transition-colors">
-              <FiHeart />
-            </button>
-
-            <button className="hover:text-[#006633] transition-colors">
               <FiUser />
             </button>
 
-            <button className="relative hover:text-[#006633] transition-colors">
+            <Link
+              href={"/cart"}
+              className="relative hover:text-[#006633] transition-colors"
+            >
               <FiShoppingCart />
-              <span className="absolute -top-2 -right-2 bg-[#b33600] text-white text-[11px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                2
-              </span>
-            </button>
+              {mounted && totalCartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#b33600] text-white text-[11px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in fade-in zoom-in-75 duration-200">
+                  {totalCartCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
 
+        {/* Mobile Icons Header */}
         <div className="flex md:hidden items-center gap-4">
           <button
             onClick={toggleTheme}
@@ -150,7 +161,6 @@ export default function Navbar() {
 
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-6 space-y-3 border-t bg-white border-zinc-200 dark:bg-zinc-950 dark:border-zinc-800">
-          {/* Mobile Search */}
           <div className="relative w-full my-3">
             <input
               type="text"
@@ -183,14 +193,16 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 text-xl justify-around">
             <button className="flex items-center gap-1 text-sm">
-              <FiHeart /> Wishlist
-            </button>
-            <button className="flex items-center gap-1 text-sm">
               <FiUser /> Account
             </button>
-            <button className="relative flex items-center gap-1 text-sm">
-              <FiShoppingCart /> Cart (2)
-            </button>
+            <Link
+              href={"/cart"}
+              onClick={() => setMobileMenuOpen(false)}
+              className="relative flex items-center gap-1 text-sm text-zinc-800 dark:text-zinc-200 hover:text-[#006633]"
+            >
+              <FiShoppingCart />
+              <span>Cart ({mounted ? totalCartCount : 0})</span>
+            </Link>
           </div>
         </div>
       )}
