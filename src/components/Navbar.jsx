@@ -62,7 +62,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="px-[10px] border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-10">
+    <nav className="px-[10px] border-b transition-colors duration-300 bg-[#f8f9fa] border-zinc-200 text-zinc-800 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 fixed w-full z-20">
       <div className="container mx-auto sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         <Link href={"/"} className="shrink-0">
           <span className="text-xl font-bold text-[#006633] cursor-pointer tracking-tight">
@@ -118,9 +118,9 @@ export default function Navbar() {
                 ))}
             </button>
 
-            <button className="hover:text-[#006633] transition-colors">
+            <Link href={"/auth/login"} className="hover:text-[#006633] transition-colors">
               <FiUser />
-            </button>
+            </Link>
 
             <Link
               href={"/cart"}
