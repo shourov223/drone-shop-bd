@@ -68,7 +68,7 @@ export default function Banner() {
             bulletClass:
               "swiper-pagination-bullet !bg-zinc-400 dark:!bg-zinc-600 transition-all duration-300 rounded-full !h-2 !w-2 inline-block mx-1 cursor-pointer",
           }}
-          className="rounded-3xl border border-zinc-200/60 dark:border-zinc-800/50 overflow-hidden shadow-sm h-full"
+          className="rounded-md border border-zinc-200/60 dark:border-zinc-800/50 overflow-hidden shadow-sm h-full"
         >
           {bannerData.map((slide) => (
             <SwiperSlide key={slide.id} className="h-full">
