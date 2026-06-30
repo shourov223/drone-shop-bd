@@ -43,7 +43,7 @@ export async function POST(request) {
     await newRegistration.save();
 
     const secret = new TextEncoder().encode(process.env.SECRET_KEY);
-    const token = await new SignJWT({ userId: newRegistration._id })
+    const token = await new SignJWT({ userId: newRegistration._id.toString() })
       .setIssuedAt()
       .setExpirationTime("1h")
       .setProtectedHeader({ alg: "HS256" })

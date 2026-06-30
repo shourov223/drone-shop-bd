@@ -35,6 +35,12 @@ export const baseRegisterSchema = z.object({
     .min(1, { message: "Confirm password is required" }),
 });
 
+export const otpSchema = z.object({
+  otp: z.string().regex(/^\d{6}$/, {
+    message: "OTP must be a 6-digit number",
+  }),
+});
+
 export const registerSchema = baseRegisterSchema.refine(
   (data) => data.password === data.confirmPassword,
   {
