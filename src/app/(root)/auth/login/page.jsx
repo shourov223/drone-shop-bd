@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [otpEmail, setOtpEmail] = useState();
+  const [otpEmail, setOtpEmail] = useState("");
   const [otpVerificationLoading, setOtpVerificationLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -43,7 +43,6 @@ export default function LoginPage() {
 
     setIsLoading(true);
     try {
-      setIsLoading(true);
       const { data: registerResponse } = await axios.post(
         "/api/auth/login",
         formData,
@@ -52,14 +51,15 @@ export default function LoginPage() {
         toast.warning(registerResponse.message);
       } else {
         toast.success(registerResponse.message);
+
+        // লগইন এপিআই থেকে পাঠানো ইমেইলটি স্টেটে সেট করা হচ্ছে
+        setOtpEmail(registerResponse.data?.email || formData.email);
+
         setFormData({
-          name: "",
           email: "",
           password: "",
-          confirmPassword: "",
         });
       }
-      setOtpEmail(values.email);
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
     } finally {
@@ -67,8 +67,31 @@ export default function LoginPage() {
     }
   };
 
-  const handleOtpVerification = async () => {
-    alert("hellow");
+  // 🛠️ ফিক্সড ওটিপি ভেরিফিকেশন হ্যান্ডলার
+  const handleOtpVerification = async (otpValue) => {
+    setOtpVerificationLoading(true); // ✅ লোডিং ট্রু করা হলো
+    try {
+      // 🚨 মহাগুরুত্বপূর্ণ ফিক্স: সরাসরি otpValue না পাঠিয়ে অবজেক্ট আকারে email ও otp পাঠানো হলো
+      const { data: registerResponse } = await axios.post(
+        "/api/auth/verify-otp", // আপনার ব্যাকএন্ড রাউটের নাম অনুযায়ী (verify-otp অথবা verifyOtp) ঠিক রাখুন
+        {
+          email: otpEmail,
+          otp: otpValue,
+        },
+      );
+
+      if (!registerResponse.success) {
+        toast.warning(registerResponse.message);
+      } else {
+        toast.success(registerResponse.message);
+        setOtpEmail(""); // ওটিপি সাকসেস হলে রিসেট করে ড্যাশবোর্ডে যাবে
+        window.location.href = "/"; // লগইন সফল হলে রিডাইরেক্ট করুন
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+    } finally {
+      setOtpVerificationLoading(false);
+    }
   };
 
   return (

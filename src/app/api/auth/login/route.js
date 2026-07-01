@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/databaseConnection";
 import { catchError, generateOTP, response } from "@/lib/helperFunction";
 import { loginSchema } from "@/lib/zodschema";
-import z, { success } from "zod";
+import z from "zod"; // success রিমুভ করা হয়েছে যা এরর করতে পারত
 import userModel from "../../../../../models/User.model";
 import { SignJWT } from "jose";
 import { sendMail } from "@/lib/sendMail";
@@ -27,7 +27,7 @@ export async function POST(request) {
       return response(
         false,
         401,
-        "Invalide or missing input field",
+        "Invalid or missing input field", // বানান ঠিক করা হয়েছে
         validatedData.error,
       );
     }
@@ -39,7 +39,7 @@ export async function POST(request) {
       .select("+password");
 
     if (!getUser) {
-      return response(false, 404, "Invalide login data");
+      return response(false, 404, "Invalid login data"); // বানান ঠিক করা হয়েছে
     }
 
     if (!getUser.isEmailVerified) {
@@ -91,10 +91,10 @@ export async function POST(request) {
     );
 
     if (!otpEmailStatus.success) {
-      return response(false, 400, "Faild to send OTP");
+      return response(false, 400, "Failed to send OTP");
     }
 
-    return response(true, 200, "Please verify your device.");
+    return response(true, 200, "Please verify your device.", { email });
   } catch (error) {
     return catchError(error);
   }
